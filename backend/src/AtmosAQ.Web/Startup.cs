@@ -28,6 +28,7 @@ namespace AtmosAQ.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.SetupDatabase(Configuration);
+            services.SetupIdentity();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
