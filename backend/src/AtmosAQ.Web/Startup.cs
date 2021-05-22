@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtmosAQ.Infrastructure.Identity.Models;
 using AtmosAQ.Web.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,10 @@ namespace AtmosAQ.Web
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<JwtToken>(Configuration.GetSection("JwtToken"));
+            
+            services.SetupAuthentication(Configuration);
+            
             services.SetupDatabase(Configuration);
             services.SetupIdentity();
 
