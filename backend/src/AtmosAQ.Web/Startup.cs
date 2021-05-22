@@ -31,6 +31,7 @@ namespace AtmosAQ.Web
             services.Configure<JwtToken>(Configuration.GetSection("JwtToken"));
             
             services.SetupAuthentication(Configuration);
+            services.SetupAuthorization();
             
             services.SetupDatabase(Configuration);
             services.SetupIdentity();
