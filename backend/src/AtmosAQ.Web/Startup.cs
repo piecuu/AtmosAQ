@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtmosAQ.Web.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,7 @@ namespace AtmosAQ.Web
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.SetupDatabase(Configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
