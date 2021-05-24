@@ -30,14 +30,16 @@ namespace AtmosAQ.Web
         {
             services.Configure<JwtToken>(Configuration.GetSection("JwtToken"));
             
-            services.SetupAuthentication(Configuration);
-            
-            services.SetupAuthorization();
-            
             services.SetupDatabase(Configuration);
             
             services.SetupIdentity();
+            
+            services.SetupAuthorization();
 
+            services.SetupServcies();
+            
+            services.SetupAuthentication(Configuration);
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

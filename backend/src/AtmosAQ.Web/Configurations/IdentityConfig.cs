@@ -1,4 +1,5 @@
 ﻿using AtmosAQ.Infrastructure.Identity.Models;
+using AtmosAQ.Infrastructure.Identity.Services;
 using AtmosAQ.Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 
