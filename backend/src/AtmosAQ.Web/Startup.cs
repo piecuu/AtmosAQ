@@ -41,10 +41,8 @@ namespace AtmosAQ.Web
             services.SetupAuthentication(Configuration);
             
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AtmosAQ API", Version = "v1" });
-            });
+            
+            services.SetupSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,9 +50,9 @@ namespace AtmosAQ.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AtmosAQ API v1"));
             }
+            
+            app.UseSwaggerAndUi();
 
             app.UseSerilogRequestLogging();
 
