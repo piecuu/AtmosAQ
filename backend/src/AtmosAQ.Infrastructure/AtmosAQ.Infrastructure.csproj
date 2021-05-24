@@ -11,4 +11,12 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AtmosAQ.Application\AtmosAQ.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services" />
+  </ItemGroup>
+
 </Project>

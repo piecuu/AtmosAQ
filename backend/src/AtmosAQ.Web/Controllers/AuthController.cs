@@ -14,7 +14,7 @@ namespace AtmosAQ.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task AuthenticateAsync()
+        public IActionResult AuthenticateAsync()
         {
             return Ok();
         }
