@@ -17,7 +17,7 @@ namespace AtmosAQ.Web
         public static async Task Main(string[] args)
         {
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json", true, true)
                 .Build();
 
             Log.Logger = new LoggerConfiguration()
