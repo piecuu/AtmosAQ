@@ -38,6 +38,8 @@ namespace AtmosAQ.Web
 
             services.SetupServcies(Configuration);
             
+            services.SetupMediatr();
+            
             services.SetupAuthentication(Configuration);
             
             services.AddControllers();

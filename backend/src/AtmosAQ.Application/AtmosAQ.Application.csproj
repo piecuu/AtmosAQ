@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs" />
     <Folder Include="Interfaces" />
+    <Folder Include="Queries" />
   </ItemGroup>
 
 </Project>
