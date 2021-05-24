@@ -36,7 +36,7 @@ namespace AtmosAQ.Web
             
             services.SetupAuthorization();
 
-            services.SetupServcies();
+            services.SetupServcies(Configuration);
             
             services.SetupAuthentication(Configuration);
             
