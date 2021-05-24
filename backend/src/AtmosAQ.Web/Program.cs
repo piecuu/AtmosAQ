@@ -1,6 +1,12 @@
+using System;
 using System.Threading.Tasks;
+using AtmosAQ.Infrastructure.Identity.Models;
+using AtmosAQ.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
@@ -21,6 +27,27 @@ namespace AtmosAQ.Web
             Log.Information("AtmosAQ starting up...");
 
             var host = CreateHostBuilder(args).Build();
+
+            using (var scope = host.Services.CreateScope())
+            {
+                try
+                {
+                    Log.Information("Database migration...");
+                    
+                    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    await dbContext.Database.MigrateAsync();
+
+                    Log.Information("Seeding default user...");
+                    
+                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    await DatabaseSeed.SeedDefaultUSerAsync(userManager);
+                }
+                catch (Exception ex)
+                {
+                    Log.Fatal(ex, "Error during migration or seeding the database.");
+                    throw;
+                }
+            }
 
             await host.RunAsync();
         }

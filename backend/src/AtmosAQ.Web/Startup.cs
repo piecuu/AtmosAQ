@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtmosAQ.Infrastructure.Identity.Models;
+using AtmosAQ.Web.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,21 +19,30 @@ namespace AtmosAQ.Web
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
+        
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<JwtToken>(Configuration.GetSection("JwtToken"));
+            
+            services.SetupDatabase(Configuration);
+            
+            services.SetupIdentity();
+            
+            services.SetupAuthorization();
 
+            services.SetupServcies();
+            
+            services.SetupAuthentication(Configuration);
+            
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AtmosAQ API", Version = "v1" });
-            });
+            
+            services.SetupSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,15 +50,17 @@ namespace AtmosAQ.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AtmosAQ API v1"));
             }
+            
+            app.UseSwaggerAndUi();
 
             app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
