@@ -19,15 +19,13 @@ namespace AtmosAQ.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult<AuthenticationResponse>> AuthenticateAsync([FromBody] AuthenticationRequest request)
+        public async Task<ActionResult<AuthenticationResponse>> AuthenticateAsync(
+            [FromBody] AuthenticationRequest request)
         {
             var result = await _tokenService.Authenticate(request);
 
-            if (result is null)
-            {
-                return BadRequest();
-            }
-            
+            if (result is null) return BadRequest();
+
             return Ok(result);
         }
     }

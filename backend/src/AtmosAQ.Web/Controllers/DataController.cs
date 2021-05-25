@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,8 +10,11 @@ namespace AtmosAQ.Web.Controllers
     [Route("[api/controller]")]
     public class DataController : ControllerBase
     {
-        public DataController()
+        private readonly IMediator _mediator;
+
+        public DataController(IMediator mediator)
         {
+            _mediator = mediator;
         }
 
         [HttpGet("latest/")]
