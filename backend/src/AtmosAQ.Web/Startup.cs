@@ -49,6 +49,8 @@ namespace AtmosAQ.Web
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
+            app.UseMiddleware<ExceptionHandlerConfig>();
+
             app.UseSwaggerAndUi();
 
             app.UseSerilogRequestLogging();

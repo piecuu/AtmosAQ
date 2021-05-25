@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AtmosAQ.Application\AtmosAQ.Application.csproj" />
+    <ProjectReference Include="..\AtmosAQ.Domain\AtmosAQ.Domain.csproj" />
   </ItemGroup>
 
 </Project>
