@@ -15,8 +15,4 @@
     <ProjectReference Include="..\AtmosAQ.Application\AtmosAQ.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services" />
-  </ItemGroup>
-
 </Project>
