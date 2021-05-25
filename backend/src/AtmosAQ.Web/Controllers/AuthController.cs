@@ -24,7 +24,10 @@ namespace AtmosAQ.Web.Controllers
         {
             var result = await _tokenService.Authenticate(request);
 
-            if (result is null) return BadRequest();
+            if (result is null)
+            {
+                return BadRequest();
+            }
 
             return Ok(result);
         }
