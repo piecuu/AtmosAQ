@@ -1,5 +1,5 @@
 ﻿using System.Net.Http;
-using System.Text.Json;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using AtmosAQ.Application.Interfaces;
 using AtmosAQ.Application.LatestData.Queries;
@@ -21,13 +21,9 @@ namespace AtmosAQ.Infrastructure.Services
 
             var response = await _httpClient.SendAsync(request);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                return null;
-            }
-            var responseString = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode) return null;
 
-            var result = JsonSerializer.Deserialize<GetLatestDto>(responseString);
+            var result = await response.Content.ReadFromJsonAsync<GetLatestDto>();
 
             return result;
         }

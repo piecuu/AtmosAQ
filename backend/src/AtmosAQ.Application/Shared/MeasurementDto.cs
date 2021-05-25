@@ -10,7 +10,7 @@ namespace AtmosAQ.Application.Shared
         
         public string Parameter { get; set; }
         
-        public int Value { get; set; }
+        public float Value { get; set; }
         
         public DateTime LastUpdated { get; set; } 
         

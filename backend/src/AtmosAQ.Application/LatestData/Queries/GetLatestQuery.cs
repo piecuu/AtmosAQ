@@ -18,9 +18,9 @@ namespace AtmosAQ.Application.LatestData.Queries
                 _dataService = dataService;
             }
 
-            public Task<GetLatestDto> Handle(GetLatestQuery request, CancellationToken cancellationToken)
+            public async Task<GetLatestDto> Handle(GetLatestQuery request, CancellationToken cancellationToken)
             {
-                var result = _dataService.GetLatestData(request.City);
+                var result = await _dataService.GetLatestData(request.City);
 
                 return result;
             }

@@ -7,6 +7,6 @@ namespace AtmosAQ.Application.LatestData.Queries
     {
         public MetaDto Meta { get; set; }
 
-        public List<LatestDto> Results { get; set; }
+        public LatestDto[] Results { get; set; }
     }
 }

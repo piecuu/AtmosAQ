@@ -8,7 +8,7 @@ namespace AtmosAQ.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class DataController : ControllerBase
     {
         private readonly IMediator _mediator;
