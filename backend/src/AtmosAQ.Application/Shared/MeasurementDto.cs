@@ -12,9 +12,13 @@ namespace AtmosAQ.Application.Shared
         
         public float Value { get; set; }
         
+        public DateDto Date { get; set; }
+        
         public DateTime LastUpdated { get; set; } 
         
         public string Unit { get; set; }
+        
+        public CoordinateDto Coordinates { get; set; }
         
         public string Country { get; set; }
         

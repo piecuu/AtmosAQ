@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AtmosAQ.Application.LatestData.Queries;
+using AtmosAQ.Application.MeasurementsData.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,9 +28,11 @@ namespace AtmosAQ.Web.Controllers
         }
 
         [HttpGet("measurements/")]
-        public async Task<IActionResult> GetMeasurements(string city)
+        public async Task<IActionResult> GetMeasurements([FromQuery] GetMeasurementsQuery query)
         {
-            return Ok();
+            var result = await _mediator.Send(query);
+            
+            return Ok(result);
         }
 
         [HttpGet("averages/")]
