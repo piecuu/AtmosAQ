@@ -15,4 +15,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AtmosAQ.Domain\AtmosAQ.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

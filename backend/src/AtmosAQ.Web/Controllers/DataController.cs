@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AtmosAQ.Application.AveragesData.Queries;
 using AtmosAQ.Application.LatestData.Queries;
 using AtmosAQ.Application.MeasurementsData.Queries;
 using MediatR;
@@ -36,9 +37,11 @@ namespace AtmosAQ.Web.Controllers
         }
 
         [HttpGet("averages/")]
-        public async Task<IActionResult> GetAverages(string city)
+        public async Task<IActionResult> GetAverages([FromQuery] GetAveragesQuery query)
         {
-            return Ok();
+            var result = await _mediator.Send(query);
+            
+            return Ok(result);
         }
     }
 }
