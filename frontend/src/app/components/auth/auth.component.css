@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85%;
+}
+
+.logo-login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+.author-container {
+  display: flex;
+  justify-content: end;
+}
+
+.author {
+  font-size: 0.8em;
+}
+
+.login-form-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-flex-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.login-button {
+  width: 100%;
+}
+
+.login-header {
+  justify-content: center;
+}
