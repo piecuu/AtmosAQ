@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'atmosaq-frontend';
+  title = 'AtmosAQ - Basic air quality application';
 }
