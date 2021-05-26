@@ -6,23 +6,27 @@ import { AuthenticationRequest } from '../models/authentication-request';
 import { AuthenticationResponse } from '../models/authentication-response';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type':  'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private readonly apiUrl = `${environment.apiUrl}auth`;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
     let body: AuthenticationRequest = {
-      "username": username,
-      "password": password
-    }
+      username: username,
+      password: password,
+    };
 
-    return this.httpClient.post<AuthenticationResponse>(this.apiUrl, body, httpOptions);
+    return this.httpClient.post<AuthenticationResponse>(
+      this.apiUrl,
+      body,
+      httpOptions
+    );
   }
 }
