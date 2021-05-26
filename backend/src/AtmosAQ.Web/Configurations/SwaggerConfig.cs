@@ -20,10 +20,11 @@ namespace AtmosAQ.Web.Configurations
 
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
+                    Name = "Authorization",  
+                    Type = SecuritySchemeType.ApiKey,  
+                    Scheme = "Bearer",  
+                    BearerFormat = "JWT",  
+                    In = ParameterLocation.Header
                 });
 
                 var security = new OpenApiSecurityRequirement
@@ -38,7 +39,7 @@ namespace AtmosAQ.Web.Configurations
                             },
                             UnresolvedReference = true
                         },
-                        new List<string>()
+                        new string[] {}
                     }
                 };
                 options.AddSecurityRequirement(security);
