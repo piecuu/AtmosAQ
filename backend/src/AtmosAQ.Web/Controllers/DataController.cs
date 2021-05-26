@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using AtmosAQ.Application.AveragesData.Queries;
 using AtmosAQ.Application.LatestData.Queries;
 using AtmosAQ.Application.MeasurementsData.Queries;
@@ -21,6 +22,7 @@ namespace AtmosAQ.Web.Controllers
         }
 
         [HttpGet("latest/")]
+        [ProducesResponseType(typeof(GetLatestDto), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetLatest([FromQuery] GetLatestQuery query)
         {
             var result = await _mediator.Send(query);
@@ -29,6 +31,7 @@ namespace AtmosAQ.Web.Controllers
         }
 
         [HttpGet("measurements/")]
+        [ProducesResponseType(typeof(GetMeasurementsDto), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetMeasurements([FromQuery] GetMeasurementsQuery query)
         {
             var result = await _mediator.Send(query);
@@ -37,6 +40,7 @@ namespace AtmosAQ.Web.Controllers
         }
 
         [HttpGet("averages/")]
+        [ProducesResponseType(typeof(GetAveragesDto), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAverages([FromQuery] GetAveragesQuery query)
         {
             var result = await _mediator.Send(query);
