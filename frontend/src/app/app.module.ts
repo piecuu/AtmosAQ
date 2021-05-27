@@ -25,7 +25,13 @@ import { LatestDataComponent } from './components/latest-data/latest-data.compon
 import { MeasurementsDataComponent } from './components/measurements-data/measurements-data.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, HeaderComponent, LatestDataComponent, MeasurementsDataComponent],
+  declarations: [
+    AppComponent,
+    AuthComponent,
+    HeaderComponent,
+    LatestDataComponent,
+    MeasurementsDataComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
