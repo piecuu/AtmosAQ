@@ -17,9 +17,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
+import { LatestDataComponent } from './components/latest-data/latest-data.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, HeaderComponent],
+  declarations: [AppComponent, AuthComponent, HeaderComponent, LatestDataComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
