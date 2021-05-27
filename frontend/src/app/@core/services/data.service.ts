@@ -35,13 +35,15 @@ export class DataService {
     dateFrom: Date,
     dateTo: Date,
     city: string,
-    limitResult: number
+    limitResult: number,
+    sortBy: string
   ): Observable<any> {
     const query: GetMeasurementsQuery = {
       dateFrom: dateFrom.toDateString(),
       dateTo: dateTo.toDateString(),
       city: city,
-      resultLimit: limitResult
+      resultLimit: limitResult,
+      sortBy: sortBy
     };
 
     return this.httpClient.get<GetMeasurementsDto>(

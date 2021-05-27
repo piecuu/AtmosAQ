@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
@@ -38,6 +39,7 @@ import { MeasurementsDataComponent } from './components/measurements-data/measur
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
+    MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
     HttpClientModule,

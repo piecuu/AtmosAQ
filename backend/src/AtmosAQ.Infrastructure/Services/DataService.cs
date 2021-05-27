@@ -46,7 +46,7 @@ namespace AtmosAQ.Infrastructure.Services
             var dateFrom = ParseHelper.ParseDateToString(query.DateFrom);
             var dateTo = ParseHelper.ParseDateToString(query.DateTo);
             var apiPath =
-                $"/v2/measurements?date_from={dateFrom}&date_to={dateTo}&city={query.City}&limit={query.ResultLimit}&order_by=datetime";
+                $"/v2/measurements?date_from={dateFrom}&date_to={dateTo}&city={query.City}&limit={query.ResultLimit}&order_by=datetime&sort={query.SortBy}";
 
             var request = new HttpRequestMessage(HttpMethod.Get, apiPath);
 

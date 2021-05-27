@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GetMeasurementsDto } from 'src/app/@core/models/get-measurements-dto';
 import { DataService } from 'src/app/@core/services/data.service';
+
+interface Sorting {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-measurements-data',
@@ -11,11 +16,17 @@ import { DataService } from 'src/app/@core/services/data.service';
 export class MeasurementsDataComponent implements OnInit {
   measurementsData: GetMeasurementsDto | undefined;
 
+  sortings: Sorting[] = [
+    { value: 'asc', viewValue: 'Ascening' },
+    { value: 'desc', viewValue: 'Descending' }
+  ]
+
   range = new FormGroup({
-    city: new FormControl(),
-    start: new FormControl(),
-    end: new FormControl(),
-    resultLimit: new FormControl()
+    city: new FormControl('', Validators.required),
+    start: new FormControl('', Validators.required),
+    end: new FormControl('', Validators.required),
+    resultLimit: new FormControl('', Validators.required),
+    sorting: new FormControl('', Validators.required),
   });
 
   constructor(private dataService: DataService) { }
@@ -28,8 +39,9 @@ export class MeasurementsDataComponent implements OnInit {
     let dateTo = this.range.get('end')?.value;
     let city = this.range.get('city')?.value;
     let resultLimit = this.range.get('resultLimit')?.value;
+    let sorting = this.range.get('sorting')?.value;
 
-    this.dataService.getMeasurementsData(dateFrom, dateTo, city, resultLimit).subscribe(
+    this.dataService.getMeasurementsData(dateFrom, dateTo, city, resultLimit, sorting).subscribe(
       data => {
         console.log(data);
         this.measurementsData = data;
