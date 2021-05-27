@@ -1,0 +1,66 @@
+.container {
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-card {
+  margin-top: 1em;
+}
+
+.button-flex-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.mat-card-content {
+  margin-bottom: 0px !important;
+}
+
+.mat-card-actions {
+  margin-bottom: 0px !important;
+}
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.result-card {
+  flex: 1 15%;
+  margin: 0.5em;
+}
+
+.mat-card-header .mat-card-title {
+  font-size: 14px;
+}
+
+.login-header {
+  justify-content: center;
+}
+
+.mat-card-header .mat-card-subtitle {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-card-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.measurement-box {
+  flex: 0 1 30%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: whitesmoke;
+  margin: 0.12em !important;
+  border-radius: 0.5em;
+  color: black;
+  flex-direction: column;
+}

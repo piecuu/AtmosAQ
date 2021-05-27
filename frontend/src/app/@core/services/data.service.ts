@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -22,13 +22,12 @@ export class DataService {
 
   getLatestData(city: string): Observable<any> {
     const query: GetLatestQuery = {
-      city: city
+      city: city,
     };
 
-    return this.httpClient.get<GetLatestDto>(
-      this.apiUrl + 'latest',
-      { params: { ...query } }
-    );
+    return this.httpClient.get<GetLatestDto>(this.apiUrl + 'latest', {
+      params: { ...query },
+    });
   }
 
   getMeasurementsData(
@@ -39,12 +38,12 @@ export class DataService {
     const query: GetMeasurementsQuery = {
       dateFrom: dateFrom.toUTCString(),
       dateTo: dateTo.toUTCString(),
-      city: city
+      city: city,
     };
 
     return this.httpClient.get<GetMeasurementsDto>(
       this.apiUrl + 'measurements',
-      { params: { ...query }}
+      { params: { ...query } }
     );
 
     // return this.httpClient.get<GetMeasurementsDto>(
@@ -61,12 +60,11 @@ export class DataService {
     const query: GetAveragesQuery = {
       dateFrom: dateFrom.toUTCString(),
       dateTo: dateTo.toUTCString(),
-      country: country
+      country: country,
     };
 
-    return this.httpClient.get<GetMeasurementsDto>(
-      this.apiUrl + 'averages',
-      { params: { ...query } }
-    );
+    return this.httpClient.get<GetMeasurementsDto>(this.apiUrl + 'averages', {
+      params: { ...query },
+    });
   }
 }

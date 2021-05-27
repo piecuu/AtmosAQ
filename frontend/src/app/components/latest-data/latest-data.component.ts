@@ -9,16 +9,17 @@ import { DataService } from 'src/app/@core/services/data.service';
 })
 export class LatestDataComponent implements OnInit {
   latestDataResponse: GetLatestDto | undefined;
+  city: string | undefined;
 
   constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {
-    this.getLatestData();
-  }
+  ngOnInit(): void {}
 
   getLatestData(): void {
-    this.dataService.getLatestData('London').subscribe((data) => {
-      console.log(data);
-    });
+    if (this.city != undefined) {
+      this.dataService.getLatestData(this.city).subscribe((data) => {
+        this.latestDataResponse = data;
+      });
+    }
   }
 }
