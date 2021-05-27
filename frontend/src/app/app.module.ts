@@ -18,11 +18,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { LatestDataComponent } from './components/latest-data/latest-data.component';
 import { MeasurementsDataComponent } from './components/measurements-data/measurements-data.component';
+import { AuthInterceptor } from './@core/helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { MeasurementsDataComponent } from './components/measurements-data/measur
     MatProgressSpinnerModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetLatestDto } from 'src/app/@core/models/get-latest-dto';
 import { DataService } from 'src/app/@core/services/data.service';
+import { TokenStorageService } from 'src/app/@core/services/token-storage.service';
 
 @Component({
   selector: 'app-latest-data',
@@ -11,15 +13,32 @@ import { DataService } from 'src/app/@core/services/data.service';
 export class LatestDataComponent implements OnInit {
   latestDataResponse: GetLatestDto | undefined;
   isLoading: boolean = false;
+  returnUrl = '';
 
   latestForm = new FormGroup({
     city: new FormControl('', Validators.required),
     resultLimit: new FormControl('', Validators.required)
   });
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private tokenStorageService: TokenStorageService
+    ) {
+      this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/auth';
+      this.checkAuth();
+    }
 
   ngOnInit(): void {}
+
+  checkAuth(): void {
+    const isAuthenticated = this.tokenStorageService.isAuthenticated();
+
+    if (!isAuthenticated) {
+      this.router.navigate([this.returnUrl]);
+    }
+  }
 
   getLatestData(): void {
     this.isLoading = true;

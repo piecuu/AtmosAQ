@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetMeasurementsDto } from 'src/app/@core/models/get-measurements-dto';
 import { DataService } from 'src/app/@core/services/data.service';
+import { TokenStorageService } from 'src/app/@core/services/token-storage.service';
 
 interface Sorting {
   value: string;
@@ -16,6 +18,7 @@ interface Sorting {
 export class MeasurementsDataComponent implements OnInit {
   measurementsData: GetMeasurementsDto | undefined;
   isLoading: boolean = false;
+  returnUrl: string | undefined;
 
   sortings: Sorting[] = [
     { value: 'asc', viewValue: 'Ascening' },
@@ -30,9 +33,25 @@ export class MeasurementsDataComponent implements OnInit {
     sorting: new FormControl('', Validators.required),
   });
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private dataService: DataService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private tokenStorageService: TokenStorageService
+    ) {
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/auth';
+    this.checkAuth();
+   }
 
   ngOnInit(): void {
+  }
+
+  checkAuth(): void {
+    const isAuthenticated = this.tokenStorageService.isAuthenticated();
+
+    if (!isAuthenticated) {
+      this.router.navigate([this.returnUrl]);
+    }
   }
 
   getMeasurementsData(): void {
@@ -54,5 +73,4 @@ export class MeasurementsDataComponent implements OnInit {
       }
     )
   }
-
 }
