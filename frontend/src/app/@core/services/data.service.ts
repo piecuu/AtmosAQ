@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -13,50 +13,60 @@ const httpOptions = {
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
   private readonly apiUrl = `${environment.apiUrl}data/`;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getLatestData(city: string): Observable<any> {
-    let body: GetLatestQuery = {
+    const query: GetLatestQuery = {
       city: city
     };
 
-    return this.httpClient.post<GetLatestDto>(
+    return this.httpClient.get<GetLatestDto>(
       this.apiUrl + 'latest',
-      body,
-      httpOptions
+      { params: { ...query } }
     );
   }
 
-  getMeasurementsData(dateFrom: Date, dateTo: Date, city: string): Observable<any> {
-    let body: GetMeasurementsQuery = {
-      dateFrom: dateFrom,
-      dateTo: dateTo,
+  getMeasurementsData(
+    dateFrom: Date,
+    dateTo: Date,
+    city: string
+  ): Observable<any> {
+    const query: GetMeasurementsQuery = {
+      dateFrom: dateFrom.toUTCString(),
+      dateTo: dateTo.toUTCString(),
       city: city
-    }
+    };
 
-    return this.httpClient.post<GetMeasurementsDto>(
+    return this.httpClient.get<GetMeasurementsDto>(
       this.apiUrl + 'measurements',
-      body,
-      httpOptions
+      { params: { ...query }}
     );
+
+    // return this.httpClient.get<GetMeasurementsDto>(
+    //   this.apiUrl + 'measurements',
+    //   { params: new HttpParams({ fromObject: { ...query }}) }
+    // );
   }
 
-  getAveragesData(dateFrom: Date, dateTo: Date, country: string): Observable<any> {
-    let body: GetAveragesQuery = {
-      dateFrom: dateFrom,
-      dateTo: dateTo,
+  getAveragesData(
+    dateFrom: Date,
+    dateTo: Date,
+    country: string
+  ): Observable<any> {
+    const query: GetAveragesQuery = {
+      dateFrom: dateFrom.toUTCString(),
+      dateTo: dateTo.toUTCString(),
       country: country
-    }
+    };
 
-    return this.httpClient.post<GetMeasurementsDto>(
+    return this.httpClient.get<GetMeasurementsDto>(
       this.apiUrl + 'averages',
-      body,
-      httpOptions
+      { params: { ...query } }
     );
   }
 }

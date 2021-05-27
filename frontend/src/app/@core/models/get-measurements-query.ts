@@ -1,5 +1,5 @@
 export interface GetMeasurementsQuery {
-    dateFrom: Date,
-    dateTo: Date,
+    dateFrom: string,
+    dateTo: string,
     city: string
 }

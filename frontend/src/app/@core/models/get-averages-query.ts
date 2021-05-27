@@ -1,5 +1,5 @@
 export interface GetAveragesQuery {
-    dateFrom: Date,
-    dateTo: Date,
+    dateFrom: string,
+    dateTo: string,
     country: string
 }

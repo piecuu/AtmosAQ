@@ -23,7 +23,7 @@ namespace AtmosAQ.Web.Controllers
 
         [HttpGet("latest/")]
         [ProducesResponseType(typeof(GetLatestDto), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetLatest([FromBody] GetLatestQuery query)
+        public async Task<IActionResult> GetLatest([FromQuery] GetLatestQuery query)
         {
             var result = await _mediator.Send(query);
 
@@ -32,7 +32,7 @@ namespace AtmosAQ.Web.Controllers
 
         [HttpGet("measurements/")]
         [ProducesResponseType(typeof(GetMeasurementsDto), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetMeasurements([FromBody] GetMeasurementsQuery query)
+        public async Task<IActionResult> GetMeasurements([FromQuery] GetMeasurementsQuery query)
         {
             var result = await _mediator.Send(query);
             
@@ -41,7 +41,7 @@ namespace AtmosAQ.Web.Controllers
 
         [HttpGet("averages/")]
         [ProducesResponseType(typeof(GetAveragesDto), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetAverages([FromBody] GetAveragesQuery query)
+        public async Task<IActionResult> GetAverages([FromQuery] GetAveragesQuery query)
         {
             var result = await _mediator.Send(query);
             
