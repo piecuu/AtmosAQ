@@ -1,0 +1,20 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="start center">
+  <span flex></span>
+  <div class="logo">
+    <h1 class="logo-text">Atmos<b>AQ</b></h1>
+  </div>
+  <span flex></span>
+
+  
+  <div class="profile-menu" [matMenuTriggerFor]="profile">
+    <button mat-icon-button>
+        <mat-icon>person_outline</mat-icon>
+    </button>
+    <mat-menu #profile="matMenu">
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
