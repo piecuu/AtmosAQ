@@ -7,7 +7,7 @@ namespace AtmosAQ.Application.Interfaces
 {
     public interface IDataService
     {
-        Task<GetLatestDto> GetLatestData(string city);
+        Task<GetLatestDto> GetLatestData(GetLatestQuery request);
         Task<GetMeasurementsDto> GetMeasurementsData(GetMeasurementsQuery query);
         Task<GetAveragesDto> GetAveragesData(GetAveragesQuery query);
     }

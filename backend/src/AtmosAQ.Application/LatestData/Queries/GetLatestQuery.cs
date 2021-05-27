@@ -8,6 +8,8 @@ namespace AtmosAQ.Application.LatestData.Queries
     public class GetLatestQuery : IRequest<GetLatestDto>
     {
         public string City { get; set; }
+        
+        public int ResultLimit { get; set; }
 
         public class GetLatestQueryHandler : IRequestHandler<GetLatestQuery, GetLatestDto>
         {
@@ -20,7 +22,7 @@ namespace AtmosAQ.Application.LatestData.Queries
 
             public async Task<GetLatestDto> Handle(GetLatestQuery request, CancellationToken cancellationToken)
             {
-                var result = await _dataService.GetLatestData(request.City);
+                var result = await _dataService.GetLatestData(request);
 
                 return result;
             }

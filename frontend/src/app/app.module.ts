@@ -14,12 +14,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
+import { LatestDataComponent } from './components/latest-data/latest-data.component';
+import { MeasurementsDataComponent } from './components/measurements-data/measurements-data.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, HeaderComponent],
+  declarations: [AppComponent, AuthComponent, HeaderComponent, LatestDataComponent, MeasurementsDataComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,6 +40,10 @@ import { HeaderComponent } from './components/header/header.component';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
   ],
   providers: [],
