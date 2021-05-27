@@ -10,6 +10,7 @@ import { DataService } from 'src/app/@core/services/data.service';
 })
 export class LatestDataComponent implements OnInit {
   latestDataResponse: GetLatestDto | undefined;
+  isLoading: boolean = false;
 
   latestForm = new FormGroup({
     city: new FormControl('', Validators.required),
@@ -21,14 +22,17 @@ export class LatestDataComponent implements OnInit {
   ngOnInit(): void {}
 
   getLatestData(): void {
+    this.isLoading = true;
+
     let city = this.latestForm.get('city')?.value;
     let resultLimit = this.latestForm.get('resultLimit')?.value
 
-    console.log(city);
-    console.log(resultLimit);
-
     this.dataService.getLatestData(city, resultLimit).subscribe((data) => {
       this.latestDataResponse = data;
+      this.isLoading = false;
+    },
+    error => {
+      this.isLoading = false;
     });
   }
 }

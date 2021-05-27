@@ -15,6 +15,7 @@ interface Sorting {
 })
 export class MeasurementsDataComponent implements OnInit {
   measurementsData: GetMeasurementsDto | undefined;
+  isLoading: boolean = false;
 
   sortings: Sorting[] = [
     { value: 'asc', viewValue: 'Ascening' },
@@ -35,6 +36,8 @@ export class MeasurementsDataComponent implements OnInit {
   }
 
   getMeasurementsData(): void {
+    this.isLoading = true;
+
     let dateFrom = this.range.get('start')?.value;
     let dateTo = this.range.get('end')?.value;
     let city = this.range.get('city')?.value;
@@ -43,8 +46,11 @@ export class MeasurementsDataComponent implements OnInit {
 
     this.dataService.getMeasurementsData(dateFrom, dateTo, city, resultLimit, sorting).subscribe(
       data => {
-        console.log(data);
         this.measurementsData = data;
+        this.isLoading = false;
+      },
+      error => {
+        this.isLoading = false;
       }
     )
   }
