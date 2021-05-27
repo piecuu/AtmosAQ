@@ -16,6 +16,10 @@
   justify-content: center;
 }
 
+.mat-card-form {
+  margin: 0 1em 0 1em;
+}
+
 .mat-card-content {
   margin-bottom: 0px !important;
 }
@@ -63,4 +67,9 @@
   border-radius: 0.5em;
   color: black;
   flex-direction: column;
+}
+
+.parameters {
+  display: flex;
+  justify-content: center;
 }

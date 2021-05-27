@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GetLatestDto } from 'src/app/@core/models/get-latest-dto';
 import { DataService } from 'src/app/@core/services/data.service';
 
@@ -9,17 +10,25 @@ import { DataService } from 'src/app/@core/services/data.service';
 })
 export class LatestDataComponent implements OnInit {
   latestDataResponse: GetLatestDto | undefined;
-  city: string | undefined;
+
+  latestForm = new FormGroup({
+    city: new FormControl('', Validators.required),
+    resultLimit: new FormControl('', Validators.required)
+  });
 
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}
 
   getLatestData(): void {
-    if (this.city != undefined) {
-      this.dataService.getLatestData(this.city).subscribe((data) => {
-        this.latestDataResponse = data;
-      });
-    }
+    let city = this.latestForm.get('city')?.value;
+    let resultLimit = this.latestForm.get('resultLimit')?.value
+
+    console.log(city);
+    console.log(resultLimit);
+
+    this.dataService.getLatestData(city, resultLimit).subscribe((data) => {
+      this.latestDataResponse = data;
+    });
   }
 }

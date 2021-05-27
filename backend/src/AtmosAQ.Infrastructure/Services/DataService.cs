@@ -22,9 +22,9 @@ namespace AtmosAQ.Infrastructure.Services
             _logger = logger;
         }
 
-        public async Task<GetLatestDto> GetLatestData(string city)
+        public async Task<GetLatestDto> GetLatestData(GetLatestQuery query)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"/v2/latest?city={city}&limit=10&order_by=city");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/v2/latest?city={query.City}&limit={query.ResultLimit}&order_by=city");
 
             var response = await _httpClient.SendAsync(request);
 
@@ -46,7 +46,7 @@ namespace AtmosAQ.Infrastructure.Services
             var dateFrom = ParseHelper.ParseDateToString(query.DateFrom);
             var dateTo = ParseHelper.ParseDateToString(query.DateTo);
             var apiPath =
-                $"/v2/measurements?date_from={dateFrom}&date_to={dateTo}&city={query.City}&limit=10&order_by=city";
+                $"/v2/measurements?date_from={dateFrom}&date_to={dateTo}&city={query.City}&limit={query.ResultLimit}&order_by=datetime";
 
             var request = new HttpRequestMessage(HttpMethod.Get, apiPath);
 

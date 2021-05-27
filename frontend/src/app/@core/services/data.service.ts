@@ -20,9 +20,10 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getLatestData(city: string): Observable<any> {
+  getLatestData(city: string, limitResult: number): Observable<any> {
     const query: GetLatestQuery = {
       city: city,
+      resultLimit: limitResult
     };
 
     return this.httpClient.get<GetLatestDto>(this.apiUrl + 'latest', {
@@ -33,34 +34,33 @@ export class DataService {
   getMeasurementsData(
     dateFrom: Date,
     dateTo: Date,
-    city: string
+    city: string,
+    limitResult: number
   ): Observable<any> {
     const query: GetMeasurementsQuery = {
-      dateFrom: dateFrom.toUTCString(),
-      dateTo: dateTo.toUTCString(),
+      dateFrom: dateFrom.toDateString(),
+      dateTo: dateTo.toDateString(),
       city: city,
+      resultLimit: limitResult
     };
 
     return this.httpClient.get<GetMeasurementsDto>(
       this.apiUrl + 'measurements',
       { params: { ...query } }
     );
-
-    // return this.httpClient.get<GetMeasurementsDto>(
-    //   this.apiUrl + 'measurements',
-    //   { params: new HttpParams({ fromObject: { ...query }}) }
-    // );
   }
 
   getAveragesData(
     dateFrom: Date,
     dateTo: Date,
-    country: string
+    country: string,
+    limitResult: number
   ): Observable<any> {
     const query: GetAveragesQuery = {
       dateFrom: dateFrom.toUTCString(),
       dateTo: dateTo.toUTCString(),
       country: country,
+      resultLimit: limitResult
     };
 
     return this.httpClient.get<GetMeasurementsDto>(this.apiUrl + 'averages', {

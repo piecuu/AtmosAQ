@@ -1,3 +1,4 @@
 export interface GetLatestQuery {
-    city: string
+    city: string,
+    resultLimit: number
 }

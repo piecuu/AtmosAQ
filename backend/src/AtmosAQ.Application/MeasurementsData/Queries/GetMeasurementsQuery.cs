@@ -13,6 +13,8 @@ namespace AtmosAQ.Application.MeasurementsData.Queries
         public DateTime DateTo { get; set; }
         
         public string City { get; set; }
+        
+        public int ResultLimit { get; set; }
 
         public class GetMeasurementsQueryHandler : IRequestHandler<GetMeasurementsQuery, GetMeasurementsDto>
         {

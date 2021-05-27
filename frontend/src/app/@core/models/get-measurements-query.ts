@@ -1,5 +1,6 @@
 export interface GetMeasurementsQuery {
     dateFrom: string,
     dateTo: string,
-    city: string
+    city: string,
+    resultLimit: number
 }

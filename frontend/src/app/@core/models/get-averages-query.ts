@@ -1,5 +1,6 @@
 export interface GetAveragesQuery {
     dateFrom: string,
     dateTo: string,
-    country: string
+    country: string,
+    resultLimit: number
 }
