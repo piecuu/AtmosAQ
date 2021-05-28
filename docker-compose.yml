@@ -1,0 +1,40 @@
+version: '3'
+networks:
+    atmosaq-network:
+      driver: bridge
+
+services: 
+  backend:
+    container_name: atmosaq-backend
+    build: 
+      context: ./backend/
+    ports: 
+      - '5000:80'
+      - '5001:443'
+    depends_on: 
+      - 'database'
+    networks:
+      - atmosaq-network
+
+  frontend:
+    container_name: atmosaq-frontend
+    build:
+      context: ./frontend/
+    ports: 
+      - '80:80'
+    depends_on: 
+      - 'backend'
+    networks:
+      - atmosaq-network
+
+  database:
+    container_name: atmosaq-database
+    image: postgres:latest
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=AtmosAQ
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    networks:
+      - atmosaq-network
