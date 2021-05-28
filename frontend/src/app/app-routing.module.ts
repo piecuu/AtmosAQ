@@ -5,6 +5,7 @@ import { LatestDataComponent } from './components/latest-data/latest-data.compon
 import { MeasurementsDataComponent } from './components/measurements-data/measurements-data.component';
 
 const routes: Routes = [
+  { path: '', component: LatestDataComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'latest', component: LatestDataComponent },
   { path: 'measurements', component: MeasurementsDataComponent }
