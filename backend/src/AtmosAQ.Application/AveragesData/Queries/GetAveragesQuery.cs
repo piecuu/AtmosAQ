@@ -16,6 +16,8 @@ namespace AtmosAQ.Application.AveragesData.Queries
         public string Country { get; set; }
         
         public GroupTimeEnum GroupTime { get; set; }
+        
+        public int ResultLimit { get; set; }
 
         public class GetAveragesQueryHandler : IRequestHandler<GetAveragesQuery, GetAveragesDto>
         {
