@@ -16,9 +16,12 @@ docker-compose up -d
 http://localhost:5000/ - Swagger
 http://localhost/ - AngularApp
 ```
+
 ## Default user for application:
+```
 login: rick
 password: !Sanchez1
+```
 
 ## Used
 * .NET 5
