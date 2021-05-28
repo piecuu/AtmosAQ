@@ -23,6 +23,8 @@ namespace AtmosAQ.Web
         {
             services.Configure<JwtToken>(Configuration.GetSection("JwtToken"));
 
+            services.AddCors();
+
             services.SetupApplication();
 
             services.SetupDatabase(Configuration);
@@ -48,6 +50,11 @@ namespace AtmosAQ.Web
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+            
+            app.UseCors(x => x
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
 
             app.UseMiddleware<ExceptionHandlerConfig>();
 
@@ -58,11 +65,6 @@ namespace AtmosAQ.Web
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
 
             app.UseAuthentication();
 

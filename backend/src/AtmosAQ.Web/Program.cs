@@ -56,7 +56,11 @@ namespace AtmosAQ.Web
         {
             return Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+                .ConfigureWebHostDefaults(webBuilder => 
+                {
+                    webBuilder.UseUrls("http://*:5000");
+                    webBuilder.UseStartup<Startup>(); 
+                });
         }
     }
 }

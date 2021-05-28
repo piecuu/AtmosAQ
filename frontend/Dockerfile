@@ -14,7 +14,7 @@ FROM nginx:latest
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=build /src/dist/weatherex-frontend /usr/share/nginx/html
+COPY --from=build /src/dist/atmosaq-frontend /usr/share/nginx/html
 
 EXPOSE 80
 
