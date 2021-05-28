@@ -1,17 +1,32 @@
 <mat-toolbar fxLayout="row" fxLayoutAlign="start center">
+  <div class="main-menu" [matMenuTriggerFor]="mainMenu">
+    <button mat-icon-button>
+      <mat-icon>drag_indicator</mat-icon>
+    </button>
+    <mat-menu #mainMenu="matMenu">
+      <button mat-menu-item routerLink="/latest">
+        <mat-icon>history</mat-icon>
+        <span>Latest</span>
+      </button>
+      <button mat-menu-item routerLink="/measurements">
+        <mat-icon>schedule</mat-icon>
+        <span>Measurements</span>
+      </button>
+    </mat-menu>
+  </div>
+
   <span flex></span>
   <div class="logo">
     <h1 class="logo-text">Atmos<b>AQ</b></h1>
   </div>
   <span flex></span>
 
-  
   <div class="profile-menu" [matMenuTriggerFor]="profile">
     <button mat-icon-button>
-        <mat-icon>person_outline</mat-icon>
+      <mat-icon>person_outline</mat-icon>
     </button>
     <mat-menu #profile="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Logout</span>
       </button>
